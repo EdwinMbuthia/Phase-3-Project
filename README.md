@@ -110,3 +110,57 @@ I will then use the LogisticRegression model from scikit-learn, specify a random
 
 I will then use the scaled data to fit the model and i will also display the confusion matrix.
 ![alt text](image-1.png)
+
+#### Compare the Baseline & Fitted Model Scores
+
+I will now use the test data to calculate the accuracy, recall, precision and f1scores of the fitted model.
+
+Accuracy
+Baseline: 0.151 Fitted Model: 0.850
+Recall
+Baseline: 1.000 Fitted Model: 0.178
+Precision
+Baseline: 0.151 Fitted Model: 0.514
+F1 Score
+Baseline: 0.263 Fitted Model: 0.265
+
+cv: 0.860836477854839
+
+### Outcome Analysis
+
+1. **Accuracy**
+   - **Baseline: 0.151 (15.1%)**  
+     The baseline model has an accuracy of 15.1%, which suggests it is only slightly better than random guessing. This low accuracy indicates that the baseline model is not effective at predicting the correct outcomes.
+   - **Fitted Model: 0.850 (85%)**  
+     The fitted model, with an accuracy of 85%, is significantly better, correctly predicting 85% of the instances. This substantial improvement indicates that the fitted model is far more effective at making accurate predictions compared to the baseline.
+
+2. **Recall**
+   - **Baseline: 1.000 (100%)**  
+     The recall for the baseline model is 100%, meaning it correctly identifies all positive instances in the dataset. However, this might also indicate that the baseline model predicts "positive" for almost every instance, which could lead to other metrics being low.
+   - **Fitted Model: 0.178 (17.8%)**  
+     The fitted model's recall is much lower at 17.8%, suggesting it is missing many true positive instances. This indicates that while the fitted model is accurate overall, it may not be good at capturing all actual positive cases. This could be due to a conservative approach where the model favors precision or is tuned to minimize false positives.
+
+3. **Precision**
+   - **Baseline: 0.151 (15.1%)**  
+     The baseline model's precision is 15.1%, indicating that only a small fraction of the predicted positives are actually true positives. This is consistent with a model that classifies most instances as positive to achieve high recall.
+   - **Fitted Model: 0.514 (51.4%)**  
+     The fitted model has a much higher precision of 51.4%, meaning that more than half of the positive predictions made by the model are correct. This shows that while the fitted model is more selective in predicting positives, it does so more accurately than the baseline model.
+
+4. **F1 Score**
+   - **Baseline: 0.263 (26.3%)**  
+     The baseline model has an F1 score of 26.3%, which is low and reflects the imbalance between its high recall and low precision.
+   - **Fitted Model: 0.265 (26.5%)**  
+     The F1 score for the fitted model is only slightly higher at 26.5%. This suggests that while the fitted model balances precision and recall better than the baseline, it still struggles with maintaining high performance across both metrics. This could indicate class imbalance or that the model's decision threshold might need adjustment.
+
+5. **Cross-Validation (CV) Score: 0.86 (86%)**
+   - The CV score of 0.86 shows that the model's expected accuracy on unseen data is 86%, which aligns well with the fitted model's accuracy score (0.85). This indicates the model generalizes well and suggests that overfitting is not a major concern.
+
+### Key Insights
+
+- **Accuracy Improvement**: The fitted model has a significantly higher accuracy than the baseline, indicating it is much better at predicting the correct outcomes overall.
+- **Trade-off Between Recall and Precision**: The baseline model has a perfect recall but poor precision, meaning it identifies all actual positives but at the cost of many false positives. The fitted model, however, has much better precision but lower recall, suggesting it is more conservative and focuses on reducing false positives.
+- **F1 Score Analysis**: The F1 score for both models is relatively low, which suggests there is still room for improvement in balancing precision and recall. The slight improvement over the baseline indicates the fitted model's predictions are slightly more balanced but still not optimal.
+- **Generalization Performance**: The high CV score (0.86) suggests that, despite some weaknesses in recall, the model is likely to perform well on new data.
+
+### Suggestions for Improvement of the model
+- **Handle Class Imbalance**: If there is an imbalance in the dataset (e.g., more negatives than positives), consider using techniques like oversampling, undersampling, or using algorithms that handle class imbalance better.
