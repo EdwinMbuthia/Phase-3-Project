@@ -69,3 +69,38 @@ There were no missing values in the categorical columns.
 In this section, using OneHot Encoder, I created a new binary column for each unique category, with 1 indicating the presence of the category and 0 otherwise. I first checked my target variable column amd found out it's binary so there was no point of Encoding.
 
 I then split my data into train and test datasets.
+
+## 4. Modelling
+### 4.1 What is the goal of Machine Learning?
+The goal is to help SyriaTel proactively identify customers who are at risk of leaving, allowing the company to intervene and reduce churn, which is critical for maintaining revenue and market share.
+
+Accurately predicting whether or not a customer is going to leave SyriaTel would help the company take steps to try and retain the customers.The model would also help allocate resources to the right customers. Those who aren't likely to leave the company.
+
+It would also help the company address the various painpoints that are most likely going to lead to customer churn.
+
+For this project, I will build several models using different classifiers and then compare the performance metrics to choose the best classifier. These will be:
+
+- Logistic Regression
+- Decision Tree Classifier
+- Cross-validation modelling
+
+### 4.2 Test-Train-Split
+I will first perform a test train test split of my data. The training set will be 80% and the testing set 20%. Then set the random state to 42 to ensure reproducibility.
+
+Before modelling, i will first determine what to expect to get with a 'dummy' model that always predicts a customer will leave the company(True).
+0(False) will represent the likelihood of retaining a customer while 1(True) represents the likelihood of a customer leaving.
+
+Since I am going to use the test data to model, i will use the test data here.
+
+array([566, 101], dtype=int64)
+From the above code block, it is evident that the target is imbalanced. I will then calculate different classification metrics to evaluate the model's performance for the True and False labels.
+
+Below is the confusion matrix: 
+![alt text](image.png)
+
+For the baseline metrics, I will assume that the model always chooses 1.
+baseline_accuracy: 0.15142428785607195
+baseline_precision: 0.15142428785607195
+baseline_recall: 1.0
+baseline_f1score: 0.2630208333333333
+
