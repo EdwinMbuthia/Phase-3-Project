@@ -280,3 +280,76 @@ Based on these metrics:
 - **Fitted Model**: Shows decent precision and recall but lower accuracy and F1 score compared to the Decision Tree.
 
 - **Baseline**: Has very low scores across all metrics, which suggests it is not performing well.
+
+## 5. **Recommendations**
+
+### 1.**Model to use** 
+Based on the metrics, the **Decision Tree** model appears to be the best option overall, as it provides the highest scores across accuracy, recall, precision, and F1 score. Decision Tree seems to offer the most balanced performance here.
+
+### 2.**Identify Drivers of Customer Churn**
+To identify the factors contributing to high customer churn, you can use feature importance scores or coefficients from the model. Feature importance from a Random Forest model or coefficients from a Logistic Regression model can indicate which features most strongly impact churn.
+
+# Getting the coefficients of the model
+coefficients = model.coef_[0]  # For binary classification, it's a 1D array
+
+# Creating a DataFrame for better visualization
+feature_importance_df = pd.DataFrame({
+    'Feature': X_train.columns,
+    'Importance': np.abs(coefficients)  
+})
+
+# Sorting by the most important features
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+plt.figure(figsize=(15,15))
+plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'])
+plt.xlabel('Importance')
+plt.ylabel('Feature')
+plt.title('Feature Importance in Logistic Regression')
+plt.gca().invert_yaxis()
+plt.show()
+
+![alt text](image-3.png)
+
+### Key Drivers likely to lead to customer Churn are;
+
+**Total Charges**: This is the most important feature. Customers with higher total charges are more likely to churn. 
+**Action**: Implement targeted discounts or loyalty rewards for high-billing customers. Offer bundled services at a reduced rate to decrease the perceived cost.
+
+**Customer Service Calls**: A high number of customer service calls indicates dissatisfaction or unresolved issues. 
+**Action**: Improve customer service quality by training staff, reducing response times, and resolving issues on the first call. Implement a proactive approach by contacting customers with high call volumes to check their satisfaction levels.
+
+**Voice Mail Plan and International Plan**: The presence of a voice mail plan or international plan correlates with churn. 
+**Action**: Re-evaluate the pricing or value of these plans. Consider offering better value-added services or bundles that encourage customers to keep these plans.
+
+**Number of Voicemail Messages**: A higher number of voicemail messages could indicate that customers are not using modern communication features or are facing issues. 
+**Action**: Educate customers about newer, more efficient communication methods and offer incentives for switching to them.
+
+**Geographic Factors (States)**: Several states (e.g., ND, AL, VT) have a higher importance in predicting churn. 
+**Action**: Conduct state-specific market research to understand the unique reasons for churn in these areas. Tailor marketing strategies, service improvements, or special offers to address local needs.
+
+### 3. **Analyze Churn Trends across Different States**
+To analyze churn trends across different states, you can group the data by state and compute the churn rate for each state.
+
+# Group by state and calculate churn rate
+churn_by_state = data.groupby('state')['churn'].mean().reset_index()
+churn_by_state = churn_by_state.sort_values(by='churn', ascending=False)
+
+# Plotting churn rates by state
+plt.figure(figsize=(12, 8))
+sns.barplot(data=churn_by_state, x='state', y='churn', palette='viridis')
+plt.xticks(rotation=90)
+plt.title('Churn Rate by State')
+plt.xlabel('State')
+plt.ylabel('Churn Rate')
+plt.show()
+
+![alt text](image-4.png)
+
+From the above barplot,
+
+States with the Highest Churn Rates (e.g., New Jersey (NJ), Carlifornis (CA), Texas (TX)) have the highest churn rates, exceeding 20%. These are critical areas where a significant portion of customers are likely to leave. High churn rates in these states may indicate issues such as poor network coverage, customer dissatisfaction, intense competition, or unmet customer needs.
+
+States with Moderate Churn Rates: States in the middle of the chart have moderate churn rates, ranging between 10% and 20%. These states are performing better than the highest churn states but still represent a concern. Monitoring and addressing potential issues here can prevent the churn rate from increasing.
+
+States with the Lowest Churn Rates: States on the right side of the chart (e.g., Hawaii (HI), Alaska (AK), and Arizona (AZ)) have the lowest churn rates, typically below 10%. These states might have better customer satisfaction, superior service quality, or less competition.
