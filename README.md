@@ -207,3 +207,43 @@ plt.title('Receiver operating characteristic (ROC) Curve')
 plt.legend(loc='lower right')
 plt.show()
 ![alt text](image-2.png)
+
+This graph is a **Receiver Operating Characteristic (ROC) Curve**, a tool used to evaluate the performance of a binary classification model.
+
+### Key Elements of the ROC Curve:
+1. **True Positive Rate (TPR)** (y-axis): Also known as sensitivity or recall, this measures the proportion of actual positives correctly identified by the model.
+2. **False Positive Rate (FPR)** (x-axis): This measures the proportion of actual negatives that were incorrectly identified as positive by the model.
+
+### Explanation of the Graph:
+- **Orange Line**: Represents the ROC curve, which plots the TPR against the FPR at various threshold settings. The curve shows the trade-off between sensitivity and specificity (True Negative Rate) across different thresholds.
+- **Diagonal Blue Line**: Represents a random classifier with no predictive power, which would give a line at a 45-degree angle (i.e., TPR = FPR). A model whose ROC curve is close to this line is no better than random guessing.
+- **Area Under the Curve (AUC = 0.82)**: The AUC value is 0.82, indicating that the model has a good ability to distinguish between the two classes. An AUC value of 1.0 represents a perfect model, while an AUC value of 0.5 suggests a model with no discriminative power.
+
+## Oversampling and Undersampling to handle Imbalance
+# Define SMOTE for oversampling
+smote = SMOTE(sampling_strategy=0.5, random_state=42)  # You can adjust the sampling_strategy
+
+# Define RandomUnderSampler for undersampling
+undersample = RandomUnderSampler(sampling_strategy=0.75, random_state=42)  # Adjust sampling_strategy for desired balance
+
+# Create a pipeline that combines both
+pipeline = Pipeline(steps=[('smote', smote), ('undersample', undersample)])
+X_train_resampled, y_train_resampled = pipeline.fit_resample(X_train, y_train)
+model = LogisticRegression(random_state=42)
+model.fit(X_train_resampled, y_train_resampled)
+y_pred = model.predict(X_test)
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+
+[[474  92]
+ [ 33  68]]
+              precision    recall  f1-score   support
+
+       False       0.93      0.84      0.88       566
+        True       0.42      0.67      0.52       101
+
+    accuracy                           0.81       667
+   macro avg       0.68      0.76      0.70       667
+weighted avg       0.86      0.81      0.83       667
+
+Balanced Improvement: The application of oversampling and undersampling techniques has led to a more balanced performance across the two classes. The model's ability to detect True instances has improved, reducing the bias toward the majority class (False).
