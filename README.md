@@ -9,3 +9,43 @@ Syria Telcom seek to predict whether their customers will soon leave the company
 - Develop a Predictive Model for Custmer Churn: The primary objective of this project is to build a Machine Learning classifier that predicts whether a customer will soon stop doing business with SyriaTel. The predictive capability of the model will minimize customer loss and stabilize the customer base hence reducing revenue loss.
 - Drivers of Customer Churn: Second goal is to identify the factors that would result into high customer churn.
 - Analyze Churn Trends across Different States: The last objective of this project if to examine churn trends across different states to better understand which states are likely to have high churn rates.
+
+# 2. Data Understanding
+I will first import all the necessary libraries that we will require to conduct the project.
+
+##### I explored the dataset to gain more insights.
+
+I use the `.info()` method is used in Pandas to view the
+1. **Number of Rows**
+2. **Number of Columns**
+3. **Column Names**
+4. **Non-Null Count**
+5. **Data Type of Each Column**
+
+## 2.1 Data Description
+
+state: Categorical variable indicating the customer's state.
+
+account length: Numeric variable indicating the length of the customer account.
+
+area code: Numeric variable indicating the area code of the customer.
+
+phone number: Categorical variable (likely to be excluded as it won't contribute to churn prediction).
+
+international plan: Categorical variable indicating if the customer has an international plan.
+
+voice mail plan: Categorical variable indicating if the customer has a voicemail plan.
+
+number vmail messages: Numeric variable indicating the number of voicemail messages.
+
+total day/eve/night/intl minutes: Numeric variables indicating usage minutes in various time segments.
+
+total day/eve/night/intl calls: Numeric variables indicating the number of calls in various time segments.
+
+total day/eve/night/intl charge: Numeric variables indicating charges in various time segments.
+
+customer service calls: Numeric variable indicating the number of customer service calls made by the customer.
+
+churn: Binary target variable indicating customer churn (True/False).
+
+
