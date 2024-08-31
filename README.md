@@ -164,3 +164,46 @@ cv: 0.860836477854839
 
 ### Suggestions for Improvement of the model
 - **Handle Class Imbalance**: If there is an imbalance in the dataset (e.g., more negatives than positives), consider using techniques like oversampling, undersampling, or using algorithms that handle class imbalance better.
+
+#### 4.5 **Dealing with the imbalanced data**
+
+I will first find the class imbalance in the train and test data.
+#### 4.5 **Dealing with the imbalanced data**
+
+I will first find the class imbalance in the train and test data.
+
+False    2284
+True      382
+Name: churn, dtype: int64
+
+
+False    566
+True     101
+Name: churn, dtype: int64
+
+y_score =model.decision_function(X_test)
+# False positive rate and true positive rate
+fpr, tpr, thresholds = roc_curve(y_test, y_score)
+
+# Seaborn's beautiful styling
+sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
+
+# Print AUC
+print('AUC: {}'.format(auc(fpr, tpr)))
+
+# Plot the ROC curve
+plt.figure(figsize=(10, 8))
+lw = 2
+plt.plot(fpr, tpr, color='darkorange',
+         lw=lw, label='ROC curve')
+plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.yticks([i/20.0 for i in range(21)])
+plt.xticks([i/20.0 for i in range(21)])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic (ROC) Curve')
+plt.legend(loc='lower right')
+plt.show()
+![alt text](image-2.png)
