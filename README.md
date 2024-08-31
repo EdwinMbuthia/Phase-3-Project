@@ -53,3 +53,15 @@ churn: Binary target variable indicating customer churn (True/False).
 In this bit I looked for any missing values in my dataset, removed any irrelevant columnns & converted categorical variables into numerical variables.
 Dropped the phone number as it was insignificant in predicting whether or not customers were likely to leave SyriaTel.
 I then combined the total day minutes, total evening minutes, total night minutes and the total international minutes columns to come up with a Total minutes column. I also combined the total day charge, total evening charge, total night charge and the total international charge columns to come up with a Total charges column. Combined the total day calls, total evening calls, total night calls and the total international calls columns to come up with a Total calls column.
+
+## Explore Categorical Variables
+Here i explored categorical data within my dataset. Found three categorical columns namely; State, International Plan and Voice mail plan.
+
+There were no missing values in the categorical columns.
+
+## Explore the Numerical variables
+### Summary of numerical variables
+#### .There are 6 numerical variables.
+#### .These are given by account length, number of voice mail messages, customer service calls, total minutes, total charges and total calls.
+##### .All of the numerical variables are of continuous type.
+
