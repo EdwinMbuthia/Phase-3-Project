@@ -65,3 +65,7 @@ There were no missing values in the categorical columns.
 #### .These are given by account length, number of voice mail messages, customer service calls, total minutes, total charges and total calls.
 ##### .All of the numerical variables are of continuous type.
 
+## 3.1 Data Preprocessing
+In this section, using OneHot Encoder, I created a new binary column for each unique category, with 1 indicating the presence of the category and 0 otherwise. I first checked my target variable column amd found out it's binary so there was no point of Encoding.
+
+I then split my data into train and test datasets.
