@@ -49,3 +49,7 @@ customer service calls: Numeric variable indicating the number of customer servi
 churn: Binary target variable indicating customer churn (True/False).
 
 
+# 3.0 Data Exploration & Preparation
+In this bit I looked for any missing values in my dataset, removed any irrelevant columnns & converted categorical variables into numerical variables.
+Dropped the phone number as it was insignificant in predicting whether or not customers were likely to leave SyriaTel.
+I then combined the total day minutes, total evening minutes, total night minutes and the total international minutes columns to come up with a Total minutes column. I also combined the total day charge, total evening charge, total night charge and the total international charge columns to come up with a Total charges column. Combined the total day calls, total evening calls, total night calls and the total international calls columns to come up with a Total calls column.
