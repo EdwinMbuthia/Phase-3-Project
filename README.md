@@ -104,3 +104,9 @@ baseline_precision: 0.15142428785607195
 baseline_recall: 1.0
 baseline_f1score: 0.2630208333333333
 
+### 4.4 Instantiate & Fit a Logistic Regression Model
+
+I will then use the LogisticRegression model from scikit-learn, specify a random state of 42 as well as and use default hyperparameters.
+
+I will then use the scaled data to fit the model and i will also display the confusion matrix.
+![alt text](image-1.png)
