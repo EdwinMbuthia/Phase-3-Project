@@ -247,3 +247,36 @@ print(classification_report(y_test, y_pred))
 weighted avg       0.86      0.81      0.83       667
 
 Balanced Improvement: The application of oversampling and undersampling techniques has led to a more balanced performance across the two classes. The model's ability to detect True instances has improved, reducing the bias toward the majority class (False).
+
+## Modelling using Decision Trees
+dt_accuracy = accuracy_score(y_test,y_pred)
+dt_recall = recall_score(y_test,y_pred)
+dt_precision = precision_score(y_test,y_pred)
+dt_f1score = f1_score(y_test,y_pred)
+
+print(f"""
+Accuracy
+Baseline: {baseline_accuracy:1.3f} Fitted Model: {model_accuracy:1.3f} Decision Tree: {dt_accuracy:1.3f}
+Recall 
+Baseline: {baseline_recall:1.3f} Fitted Model: {model_recall:1.3f} Decision Tree: {dt_recall:1.3f}
+Precision
+Baseline: {baseline_precision:1.3f} Fitted Model: {model_precision:1.3f} Decision Tree: {dt_precision:1.3f}
+F1_score: {baseline_f1score:.3f} Fitted Model: {model_f1score:.3f} Decision Tree: {dt_f1score:.3f}""")
+
+
+Accuracy
+Baseline: 0.151 Fitted Model: 0.850 Decision Tree: 0.919
+Recall 
+Baseline: 1.000 Fitted Model: 0.178 Decision Tree: 0.723
+Precision
+Baseline: 0.151 Fitted Model: 0.514 Decision Tree: 0.737
+F1_score: 0.263 Fitted Model: 0.265 Decision Tree: 0.730
+
+
+Based on these metrics:
+
+- **Decision Tree**: Has the highest accuracy (0.919), recall (0.723), precision (0.737), and F1 score (0.730). This indicates that the Decision Tree performs best in terms of balancing these metrics.
+
+- **Fitted Model**: Shows decent precision and recall but lower accuracy and F1 score compared to the Decision Tree.
+
+- **Baseline**: Has very low scores across all metrics, which suggests it is not performing well.
